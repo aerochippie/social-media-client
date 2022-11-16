@@ -34,8 +34,6 @@ jobs:
         run: npm i
       - name: Build SASS
         run: npm run build
-      - name: Run jest tests
-        run: npm run test
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
