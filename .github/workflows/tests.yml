@@ -18,6 +18,6 @@ jobs:
       - name : run jest
         run: npm run test
       - name: Run cypress
-        uses: cypress-io/github-action@v4.x.x # use the explicit version number
+        uses: cypress-io/github-action@v4
         with:
           spec: cypress/e2e
