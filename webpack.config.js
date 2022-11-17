@@ -34,7 +34,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "social media app",
       filename: "index.html",
-      template: "/index.html",
+      template: "./index.html",
     }),
   ],
 };
