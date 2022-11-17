@@ -14,7 +14,7 @@ describe("logout pass", () => {
 
     cy.get("#loginModal button[type=submit]").click().wait(1000);
 
-    cy.contains("Logout")
+    cy.get("button[data-auth=logout]")
       .click()
       .should(() => {
         expect(localStorage.getItem("token")).to.be.null;
