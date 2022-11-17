@@ -4,11 +4,30 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    bundle: path.resolve(__dirname, "src/js/index.js"),
+    bundle: path.resolve(__dirname, "./src/js"),
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].js",
+    filename: "[name][contenthash].js",
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.(scss)$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+    ],
   },
 
   plugins: [
@@ -18,30 +37,4 @@ module.exports = {
       template: "/index.html",
     }),
   ],
-  module: {
-    rules: [
-      {
-        test: /\.(scss)$/,
-        use: [
-          {
-            loader: "style-loader",
-          },
-          {
-            loader: "css-loader",
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: () => [require("autoprefixer")],
-              },
-            },
-          },
-          {
-            loader: "sass-loader",
-          },
-        ],
-      },
-    ],
-  },
 };
